@@ -1,0 +1,47 @@
+# Entorno virtual
+venv/
+env/
+ENV/
+.venv/
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Archivos de logs
+*.log
+
+# Configuración de VS Code
+.vscode/
+
+# Configuración de PyCharm
+.idea/
+
+# Archivos temporales del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de Jupyter (si usas notebooks)
+.ipynb_checkpoints/
+
+# Configuración de Uvicorn (si se llegara a usar logs personalizados)
+*.pid
+
+# Archivos de pruebas
+.coverage
+htmlcov/
+.tox/
+.nox/
+.cache/
+pytest_cache/
+
+# Archivos de dependencias descargadas
+__pypackages__/
+
+# Output de test/reportes
+reports/

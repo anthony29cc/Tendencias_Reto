@@ -11,7 +11,7 @@ from datetime import datetime
 import sys
 
 # Creación App FastAPI
-app = FastAPI(title="Quantum Attack Simulator",
+app = FastAPI(title="Simulador - Ataque Cuántico",
               description="API para simular ataques cuánticos a claves cifradas")
 
 # Cancelación de la ejecución
@@ -132,7 +132,7 @@ def cifrar_texto(data: TextInput):
     return {"ciphertext": encrypted_text}
 
 # Endpoint que ejecuta el ataque cuántico en la clave cifrada
-# Modify your print statements in the ataque function
+# Modificación en las declaraciones cuando se activa el ataque
 
 
 @app.post("/ataque")
@@ -140,7 +140,6 @@ def ataque(data: CiphertextInput):
     global delete_attack
     delete_attack.clear()
 
-    # Use sys.stdout.write for immediate output
     sys.stdout.write("\n====== INICIANDO ATAQUE CUÁNTICO ======\n")
 
     sys.stdout.flush()
@@ -170,7 +169,6 @@ def ataque(data: CiphertextInput):
     if qc is None:
         return {"message": "Ataque cancelado por el usuario."}
 
-    # Add error handling for the quantum simulation
     try:
         print("Ejecutando simulación cuántica...", flush=True)
         backend = Aer.get_backend('qasm_simulator')
@@ -182,7 +180,7 @@ def ataque(data: CiphertextInput):
     except Exception as e:
         print(f"Error en la simulación cuántica: {str(e)}", flush=True)
         counts = {"error": str(e)}
-        # Intentar infinitamente en caso de error
+
         attempts = 0
         while True:
             time.sleep(0.5)
@@ -194,14 +192,16 @@ def ataque(data: CiphertextInput):
 
     end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-    # Calculate actual elapsed time
+    # Calcular el tiempo transcurrido
+
     start_datetime = datetime.strptime(start_time, '%Y-%m-%d %H:%M:%S')
     end_datetime = datetime.strptime(end_time, '%Y-%m-%d %H:%M:%S')
     elapsed_seconds = (end_datetime - start_datetime).total_seconds()
 
     decrypted_key = base64.b64decode(ciphertext).decode()
 
-    # Print clear terminal output with the requested information
+    # Salida clara de la terminal con la información
+
     print("\nRESULTADOS DEL ATAQUE:", flush=True)
     print(f"Fecha de inicio del ataque: {start_time}", flush=True)
     print(f"Fecha de fin del ataque: {end_time}", flush=True)
